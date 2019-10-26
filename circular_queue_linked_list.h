@@ -3,9 +3,9 @@
 
 void create();
 
-int insert(int x);
+int insert_element(int x);
 
-int remove(int *value);
+int remove_element(int *value);
 
 int is_full();
 

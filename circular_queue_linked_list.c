@@ -14,7 +14,7 @@ void create(){
     queue->next = queue;
 }
 
-int insert(int x);{
+int insert_element(int x){
     cell *new;
     new = malloc(sizeof(cell));
 
@@ -23,12 +23,12 @@ int insert(int x);{
     }
     new->next = queue->next;
     queue->next = new;
-    queue->data = x
+    queue->data = x;
     queue = new;
     return 1;
 }
 
-int remove(int *value){
+int remove_element(int *value){
     if(is_empty()){
         return 0;
     }

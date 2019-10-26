@@ -15,7 +15,7 @@ void create(){
     q->u=0;
 }
 
-int insert(int x){
+int insert_element(int x){
     if(!is_full(q)){
         q->queue[q->u] = x;
         q->u++;
@@ -24,7 +24,7 @@ int insert(int x){
     return 0;
 }
 
-int remove(int *value){
+int remove_element(int *value){
     if(!is_empty(q)){
         *value = q->queue[q->p];
         q->p++;
