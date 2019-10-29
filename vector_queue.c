@@ -49,3 +49,114 @@ int is_empty(){
 int size(){
     return q->u - q->p;
 }
+
+int size_num(int num){
+    int size=0;
+
+    while(num!=0){
+        size++;
+        num = num/10;
+    }
+    return size;
+}
+
+void print(){
+    int i, aux, count=0, num;
+
+    for(aux=0; aux<q->u; aux++){
+        count += size_num(q->queue[aux]);
+    }
+
+    printf(" ");
+
+    for(i = 0; i < (q->u)*3+count-1; i++){
+        printf("-");
+    }
+
+    printf("\n|");
+    
+    for(i = 0; i < q->u; i++){
+        printf(" %d |", q->queue[i]);
+    }
+
+    printf("\n ");
+
+    for(i = 0; i < (q->u)*3+count-1; i++){
+        printf("-");
+    }
+    
+    printf("\n");
+
+    if(q->p == 0){
+        count = size_num(q->queue[q->p]);
+        if(count==1) {
+            printf("  p");
+        }
+        else if(count==2){
+            printf("  p ");
+        }
+        else{
+            printf("   p ");
+        }
+
+        for(i=1; i<(q->u); i++){
+            printf("   ");
+
+            if(i != q->u-1){
+                num = q->queue[i];
+                count= size_num(num);
+                printf(" ");
+            }
+        }
+
+        count = size_num(q->queue[q->u-1]);
+
+        if (count <= 2){
+            printf("u");
+        }
+        else if(count == 3){
+            printf(" u");
+        }  
+        
+    }
+    else{
+        for(i = 0; i<q->u; i++){
+            count = size_num(q->queue[i]);
+
+            printf("  ");
+
+            if(i == q->p){
+                if (count <=2){
+                    printf("p");
+                }
+                else{
+                    printf(" p");
+                }
+            }
+
+            if(q->queue[q->u-1] == q->queue[i]){
+                if (count <=2){
+                    printf("u");
+                }
+                else{
+                    printf(" u");
+                }
+                break;
+            }
+            
+            if(!(i== q->p && count == 1)){ 
+                for(aux = 0; aux < count; aux++){
+                    if(q->queue[i] == q->queue[q->p] && count == 2){
+                        count -= 1;
+                    }
+                    if(q->queue[i] == q->queue[q->p] && count == 3){
+                        count -= 2;
+                    }
+                    
+                    printf(" ");
+                }
+            }
+            printf(" ");
+        }    
+    }
+}
