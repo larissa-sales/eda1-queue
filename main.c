@@ -24,6 +24,7 @@ int main(){
                 printf("\n");
 
                 if(elements<0 || elements>999){
+                    printf("It needs to be from 0 to 999!");
                     scanf("%d", &elements);
                 }
 
@@ -33,13 +34,23 @@ int main(){
                     insert_element(num);
                 }
 
-                // printf("\n");
-                // print();
-
                 break;
 
             case 2:
-                //remove();
+                // printf("How many elements do you want to remove? ");
+                // scanf("%d", &elements);
+                // printf("\n");
+
+                // if(elements<0 || elements>999){
+                //     printf("It needs to be from 0 to 999!");
+                //     scanf("%d", &elements);
+                // }
+
+                // for(int i=0; i<elements; i++){
+                //     printf("Insert element %d: ", i+1);
+                //     remove_element(num);
+                // }
+
                 break;
 
             case 3:
