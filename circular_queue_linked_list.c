@@ -72,4 +72,89 @@ int size(){
     return sum;
 }
 
-void print();
+void print(){
+    cell *print = queue;
+    int count=0, num, i, countNum;
+
+    do{
+        print = print->next;
+        num = print->data;
+
+        while(num!=0){
+            count++;
+            num = num/10;
+        }
+    } while(print->prox != queue);
+
+    print = queue;
+    countNum = size();
+
+    printf(" ");
+
+    for(i=0; i<((countNum)*3+count-1); i++){
+        printf("-");
+    }
+
+    printf("\n|");
+
+    do{
+        print = print->next;
+        printf(" %d |", print->data);
+    
+    } while(print->next!=queue);
+
+    printf("\n ");
+
+    for(i=0; i<((countNum)*3+count-1); i++){
+        printf("-");
+    }
+
+    printf("\n");
+
+    print = queue;
+
+    do{
+        print = print->next;
+
+        if(print->data == queue->next->data){
+            num = print->data;
+            count=0;
+
+            while(num != 0){
+                count++;
+                num = num/10;
+            }
+
+            if(count <= 2){
+                printf("  p");
+            }
+            else{
+                printf("   p");
+            }
+        }
+        else{
+            count=0;
+            num = print->data;
+
+            while(num != 0){
+                count++;
+                num = num/10;
+            }
+            printf("   ");
+
+            for(i=0; i<count; i++){
+                if(print->next !=queue){
+                    printf(" ");
+                }
+                else{
+                    if (count <= 2) printf(" ");
+					if (count == 3) printf("  ");
+					break;
+                }
+            }
+        }
+        if(print->next == queue){
+            printf("u");
+        }
+    }while(print->next!=queue);
+}
