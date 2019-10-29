@@ -84,7 +84,7 @@ void print(){
             count++;
             num = num/10;
         }
-    } while(print->prox != queue);
+    } while(print->next != queue);
 
     print = queue;
     countNum = size();
