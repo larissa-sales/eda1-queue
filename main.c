@@ -3,49 +3,55 @@
 #include "vector_queue.h"
 
 int main(){
-    int select, elements, num;
-    printf("Choose an option:\n\n");
-    printf("1. Insert elements on queue.\n");
-    printf("2. Remove elements from queue.\n");
-    printf("3. Print queue.\n");
-    printf("4. Restart queue.\n");
-    printf("5. Exit.\n\n");
+    int select=0, elements, num;
 
-    scanf("%d", &select);
+    create();
 
-    switch (select){
-    case 1:
-        printf("How many elements do you want to insert? ");
-        scanf("%d", &elements);
-        printf("\n");
+    while(select!=5){
+        printf("\n\nChoose an option:\n\n");
+        printf("1. Insert elements on queue.\n");
+        printf("2. Remove elements from queue.\n");
+        printf("3. Print queue.\n");
+        printf("4. Restart queue.\n");
+        printf("5. Exit.\n\n");
 
-        if(elements<0 || elements>999){
-            scanf("%d", &elements);
-        }
+        scanf("%d", &select);
 
-        printf("Insert elements: ");
-        for(int i=0; i<elements; i++){
-            scanf("%d", &num);
-            insert(num);
-        }
+        switch (select){
+            case 1:
+                printf("How many elements do you want to insert? ");
+                scanf("%d", &elements);
+                printf("\n");
 
-        //break;
+                if(elements<0 || elements>999){
+                    scanf("%d", &elements);
+                }
 
-    case 2:
-        //remove();
-        break;
+                for(int i=0; i<elements; i++){
+                    printf("Insert element %d: ", i+1);
+                    scanf("%d", &num);
+                    insert_element(num);
+                }
 
-    case 3:
-        //print();
-        break;
+                // printf("\n");
+                // print();
 
-    case 4:
-        //delete();
-        break;
+                break;
 
-    case 5:
-        break;
-    
-    }
+            case 2:
+                //remove();
+                break;
+
+            case 3:
+                print();
+                break;
+
+            case 4:
+                //delete();
+                break;
+            
+            }
+    } 
+
     return 0;
 }
