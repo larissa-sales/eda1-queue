@@ -12,3 +12,17 @@ void create(){
     u=0;
 }
 
+int insert_element(int x){
+    int aux=1;
+    if(is_full()){
+        aux=resize();
+    }
+    if(aux){
+        queue[u++]=x;
+        if(u==N){
+            u=0;
+        }
+    }
+    return aux;
+}
+
