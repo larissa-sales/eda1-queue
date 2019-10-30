@@ -72,3 +72,19 @@ int resize(){
     return 1;
 }
 
+void clear_queue(){
+    free(queue);
+}
+
+int size(){
+    int sum=u-p;
+
+    if(p>u){
+        sum=N+sum;
+    }
+    return sum;
+}
+
+void print(){
+
+}
