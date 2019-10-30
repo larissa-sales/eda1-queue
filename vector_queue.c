@@ -46,6 +46,10 @@ int is_empty(){
     return 0;
 }
 
+void clear_queue(){
+    free(q);
+}
+
 int size(){
     return q->u - q->p;
 }
@@ -73,8 +77,10 @@ void print(){
         printf("-");
     }
 
-    printf("\n|");
-    
+    if(!is_empty()){
+        printf("\n|");
+    }
+        
     for(i = 0; i < q->u; i++){
         printf(" %d |", q->queue[i]);
     }
