@@ -24,9 +24,9 @@ int insert_element(int x){
     return 0;
 }
 
-int remove_element(int *value){
+int remove_element(int *x){
     if(!is_empty(q)){
-        *value = q->queue[q->p];
+        *x = q->queue[q->p];
         q->p++;
         return 1;
     }

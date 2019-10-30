@@ -33,12 +33,12 @@ int insert_element(int x){
     return 1;
 }
 
-int remove_element(int *value){
+int remove_element(int *x){
     if(is_empty()){
         return 0;
     }
     cell *aux = queue->next;
-    *value = aux->data;
+    *x = aux->data;
     queue->next = aux->next;
     free(aux);
     sum--;

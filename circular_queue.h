@@ -5,7 +5,7 @@ void create();
 
 int insert_element(int x);
 
-int remove_element(int *value);
+int remove_element(int *x);
 
 int is_full();
 
