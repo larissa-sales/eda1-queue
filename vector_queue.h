@@ -11,6 +11,8 @@ int is_full();
 
 int is_empty();
 
+void clear_queue();
+
 int size();
 
 void print();
