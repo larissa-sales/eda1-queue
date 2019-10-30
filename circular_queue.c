@@ -37,3 +37,38 @@ int remove_element(int *x){
     return 0;
 }
 
+int is_full(){
+    return (u+1)%N==p;
+}
+
+int is_empty(){
+    return p==u;
+}
+
+int resize(){
+    int i, j;
+
+    queue = realloc(queue, 2 * N * sizeof(int));
+
+    if(queue == NULL){
+        return 0;
+    }
+
+    if(u != N - 1){
+        if(u-1 < N - p){
+            for(i = N, j = 0; j < u; i++, j++){
+                queue[i] = queue[j];
+            }
+            u = N + u;
+        }
+        else{
+            for(i = p, j = N + p; i < N; i++, j++){
+                queue[j] = queue[i];
+            }
+            p = N + p;
+        }
+    }
+    N *= 2;
+    return 1;
+}
+
