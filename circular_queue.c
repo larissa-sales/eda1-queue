@@ -26,3 +26,14 @@ int insert_element(int x){
     return aux;
 }
 
+int remove_element(int *x){
+    if(!is_empty()){
+        *x-queue[p++];
+        if(p==N){
+            p=0;
+        }
+        return 1;
+    }
+    return 0;
+}
+
