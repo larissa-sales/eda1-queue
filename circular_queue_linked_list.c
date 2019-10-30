@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "circular_queue_linked_list.h"
 
+static int sum;
+
 typedef struct cell{
     int data;
     struct cell *next;
@@ -11,20 +13,23 @@ cell *queue;
 
 void create(){
     queue = malloc(sizeof(cell));
+    queue->data = 0;
     queue->next = queue;
+    sum = 0;
 }
 
 int insert_element(int x){
-    cell *new;
-    new = malloc(sizeof(cell));
+    cell *new = malloc(sizeof(cell));
 
-    if(is_full(new)){
+    if(new == NULL){
         return 0;
     }
+
     new->next = queue->next;
     queue->next = new;
     queue->data = x;
     queue = new;
+    sum++;
     return 1;
 }
 
@@ -32,10 +37,11 @@ int remove_element(int *value){
     if(is_empty()){
         return 0;
     }
-    cell *nothing = queue->next;
-    *value = nothing->data;
-    queue->next = nothing->next;
-    free(nothing);
+    cell *aux = queue->next;
+    *value = aux->data;
+    queue->next = aux->next;
+    free(aux);
+    sum--;
     return 1;
 }
 
@@ -57,104 +63,70 @@ int is_empty(){
     }
 }
 
+void clear_queue(){
+    if(!is_empty()){
+        cell *aux, *next;
+        next = queue->next;
+        
+        while(next != queue){
+            aux = next;
+            next = aux->next;
+            free(aux);
+        }
+    }
+}
+
 int size(){
-    if(queue->next == NULL){
-        return 0;
-    }
-    int sum=0;
-
-    cell *count = queue;
-
-    while(count->next != queue){
-        sum++;
-        count = count->next;
-    }
     return sum;
 }
 
 void print(){
-    cell *print = queue;
-    int count=0, num, i, countNum;
+    cell *aux = queue;
 
-    do{
-        print = print->next;
-        num = print->data;
-
-        while(num!=0){
-            count++;
-            num = num/10;
-        }
-    } while(print->next != queue);
-
-    print = queue;
-    countNum = size();
-
-    printf(" ");
-
-    for(i=0; i<((countNum)*3+count-1); i++){
-        printf("-");
-    }
-
-    printf("\n|");
-
-    do{
-        print = print->next;
-        printf(" %d |", print->data);
-    
-    } while(print->next!=queue);
-
-    printf("\n ");
-
-    for(i=0; i<((countNum)*3+count-1); i++){
-        printf("-");
+    for(int i=0; i<size(); i++){
+        printf("----");
     }
 
     printf("\n");
 
-    print = queue;
+    //printf("----------------------");
 
-    do{
-        print = print->next;
-
-        if(print->data == queue->next->data){
-            num = print->data;
-            count=0;
-
-            while(num != 0){
-                count++;
-                num = num/10;
-            }
-
-            if(count <= 2){
-                printf("  p");
-            }
-            else{
-                printf("   p");
-            }
+    for(aux; aux->next != queue; aux = aux->next){
+        if(aux->data == 0){
+            printf("|");
         }
         else{
-            count=0;
-            num = print->data;
+            printf("  %d  |", aux->data);
+        }
+    }
 
-            while(num != 0){
-                count++;
-                num = num/10;
+    printf("\n");
+
+    for(int i=0; i<size(); i++){
+        printf("----");
+    }
+
+    if(sum == 0){
+        printf("\np  u\n");
+    }
+    else{
+        for(aux; aux->next != queue; aux = aux->next){
+            if(aux->data != 0){
+                printf(" p ");
+                break;
             }
-            printf("   ");
-
-            for(i=0; i<count; i++){
-                if(print->next !=queue){
-                    printf(" ");
-                }
+            else{
+                printf("    ");
+            }
+        }
+        for(aux; aux->next != queue; aux = aux->next){
+            if(aux->data != 0 && aux->next->data == 0){
+                printf("  u  \n");
+                break;
+            }
                 else{
-                    if (count <= 2) printf(" ");
-					if (count == 3) printf("  ");
-					break;
-                }
+                printf("     ");
             }
         }
-        if(print->next == queue){
-            printf("u");
-        }
-    }while(print->next!=queue);
+    }
 }
