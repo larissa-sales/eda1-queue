@@ -85,6 +85,77 @@ int size(){
     return sum;
 }
 
-void print(){
+int size_num(int num){
+    int size=0;
 
+    while(num!=0){
+        size++;
+        num = num/10;
+    }
+    return size;
+}
+
+void print(){
+    int i=0, count=0, aux;
+
+    for(aux=0; aux<size(); aux++){
+        count += size_num(queue[aux]);
+    }
+
+    printf(" ");
+
+    for(i = 0; i < size()*3+count; i++){
+        printf("-");
+    }
+
+    if(!is_empty()){
+        printf("\n|");
+    }
+
+    for(i = 0; i < N; i++){
+        if(queue[i] == 0){
+            if(i==N-1){ //last position
+                printf(" ");
+            }
+            else if (i==0){ //first position
+                printf("| ");
+            }
+            
+        }
+        else{
+            printf("  %d  |", queue[i]);
+        }
+    }
+
+    printf("\n ");
+
+    for(i = 0; i < size()*3+count-1; i++){
+        printf("-");
+    }
+    
+    printf("\n");
+    
+    if(p == 0 && u == 0){
+        printf("p  u\n");
+    }
+    else{
+        for(i = 0; i < N; i++){
+            if(queue[i] != 0){
+                printf(" p ");
+                break;
+            }
+            else{
+                printf("    ");
+            }
+        }
+        for(i = 0; i < N; i++){
+            if(queue[i] != 0 && queue[i+1] == 0){
+                printf("  u  \n");
+                break;
+            }
+                else{
+                printf("     ");
+            }
+        }
+    }
 }
